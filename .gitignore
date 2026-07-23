@@ -1,0 +1,16 @@
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Build output
+dist/
+
+# readpst is built from source by scripts/build-readpst.sh, not committed
+# (it's a GPL-2.0-or-later binary — see README for details).
+Resources/bin/readpst
+
+# macOS
+.DS_Store
+
+# Local Claude Code settings (not meant for the public repo)
+.claude/
