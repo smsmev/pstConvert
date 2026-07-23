@@ -2,6 +2,8 @@
 
 A native macOS app (Apple Silicon) that converts Outlook `.pst` files into PDF — drag a file in, pick where the output goes, and it does the rest.
 
+![pstConvert main window](docs/screenshot.png)
+
 ## Features
 
 - **Drag and drop** — drop a `.pst` file onto the window, or click to browse
@@ -22,16 +24,22 @@ A native macOS app (Apple Silicon) that converts Outlook `.pst` files into PDF �
 
 ## Installation
 
-There's no signed release build yet, so building from source is the way to run it.
+### Option A: Download the latest release
 
-### 1. Clone the repo
+Grab the zip from the [Releases page](https://github.com/smsmev/pstConvert/releases/latest), unzip it, and drag `pstConvert.app` into `/Applications`.
+
+The app is ad-hoc signed rather than notarized, so on first launch macOS will refuse to open it via a normal double-click. Right-click (or Control-click) `pstConvert.app` and choose **Open**, then confirm in the dialog that appears — you only need to do this once.
+
+### Option B: Build from source
+
+#### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/pstConvert.git
+git clone https://github.com/smsmev/pstConvert.git
 cd pstConvert
 ```
 
-### 2. Build the `readpst` dependency
+#### 2. Build the `readpst` dependency
 
 pstConvert uses `readpst` (from the [libpst](https://github.com/pst-format/libpst) project) to read `.pst` files. It isn't committed to this repo — build it from official source with:
 
@@ -41,7 +49,7 @@ pstConvert uses `readpst` (from the [libpst](https://github.com/pst-format/libps
 
 This downloads the libpst source tarball, strips its optional `libgsf` dependency (only needed for `.msg` export, which isn't used here), and compiles a self-contained `readpst` binary into `Resources/bin/readpst`. Requires the Xcode Command Line Tools (`xcode-select --install` if you don't already have them).
 
-### 3. Build and install the app
+#### 3. Build and install the app
 
 ```bash
 ./build.sh    # builds the Swift package and assembles pstConvert.app in dist/
